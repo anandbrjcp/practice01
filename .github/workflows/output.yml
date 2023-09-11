@@ -7,4 +7,4 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$ {{ github.event.issue.number }}"
+      - run: echo "${{ toJSON(github) }}"
