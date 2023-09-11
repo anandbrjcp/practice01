@@ -1,0 +1,10 @@
+name: output information on issues
+on:
+  issues:
+    types: [opened,edited]
+jobs:
+  output_information:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "$ {{ github.event.issue.number }}"
