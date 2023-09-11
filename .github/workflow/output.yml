@@ -1,7 +1,8 @@
 name: output information on issues
 on:
-  issues:
-    types: [opened,edited,milestoned]
+  push:
+    branches:
+      - main
 jobs:
   output_information:
     if: ${{ github.ref == "refs/heads/main" }}
