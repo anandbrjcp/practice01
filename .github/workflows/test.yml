@@ -13,23 +13,26 @@ jobs:
             - name: install dependencies
               run: npm ci
             - name: Run lint
-              run: npm lint
+              run: npm run lint
     testing:
         needs: [linting]
         runs-on: ubuntu-latest
         steps:
             - name: get code
               uses: actions/checkout@v3
-            - name: install nodeJS
-              uses: actions/setup-node@v3
-              with:
-                node-version: 18
             - name: install dependencies
               run: npm ci
             - name: Run tests
-              run: npm test
+              run: npm run test
     Deploy:
         needs: [testing]
         runs-on: ubuntu-latest
         steps:
-            - run: echo "Deploying the Code"
+            - name: get code
+              uses: actions/checkout@v3
+            - name: install dependencies
+              run: npm ci
+            - name: Run tests
+              run: npm run build
+            - name: echo
+              run: echo "Deploying to server"
